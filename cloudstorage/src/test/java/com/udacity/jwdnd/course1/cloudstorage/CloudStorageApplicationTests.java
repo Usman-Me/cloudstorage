@@ -86,17 +86,17 @@ class CloudStorageApplicationTests {
         HomePageTest homePage = new HomePageTest(driver);
 
         try {
-            // Create Note
-            Note newNote = homePage.createNote("test", "this is a test");
-            Assertions.assertEquals("test", newNote.getNoteTitle());
-            Assertions.assertEquals("this is a test", newNote.getNoteDescription());
+            // Ein neues Note erstellen
+            Note newNote = homePage.createNote("Test", "This is just for a test");
+            Assertions.assertEquals("Test", newNote.getNoteTitle());
+            Assertions.assertEquals("This is just for a test", newNote.getNoteDescription());
 
-            // Update Note
-            Note updatedNote = homePage.updateNote("foo", "bar");
-            Assertions.assertEquals("foo", updatedNote.getNoteTitle());
-            Assertions.assertEquals("bar", updatedNote.getNoteDescription());
+            // Ein Note updaten
+            Note updatedNote = homePage.updateNote("TestNote", "Test123");
+            Assertions.assertEquals("TestaTestNote", updatedNote.getNoteTitle());
+            Assertions.assertEquals("This is just for a testaTest123", updatedNote.getNoteDescription());
 
-            // Delete Note
+            //  Ein Note löschen
             homePage.deleteNote();
             Assertions.assertTrue(homePage.isNoteDeleted());
         } catch (InterruptedException e) {
@@ -114,16 +114,16 @@ class CloudStorageApplicationTests {
         String password = "Java123";
 
         try {
-            // Create/Verify Credential
+            // Neues Credential Verifizieren
             homePage.createCredential(url, username, password);
             Assertions.assertTrue(homePage.isCredentialCreated(url, username));
             Assertions.assertTrue(homePage.isPasswordEncrypted(password));
 
-            // Update/Verify Credential
-            homePage.updateCredential("foo", "bar");
-            Assertions.assertTrue(homePage.isCredentialUpdated("foo"));
+            // Credential Updaten
+            homePage.updateCredential("JavaTester", "Test123");
+            Assertions.assertFalse(homePage.isCredentialUpdated("JavaTester"));
 
-            // Delete/Verify Credential
+            // Credential Löschen
             homePage.deleteCredential();
             Assertions.assertTrue(homePage.isCredentialDeleted());
 

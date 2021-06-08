@@ -61,17 +61,17 @@ public class HomePageTest {
 
     public Note createNote(String noteTitle, String noteDescription) throws InterruptedException {
         this.navNotesTabButton.click();
-        Thread.sleep(1000);
+        Thread.sleep(1500);
 
         this.addNewNoteButton.click();
-        Thread.sleep(2000);
+        Thread.sleep(2500);
 
         this.noteTitleField.sendKeys(noteTitle);
         this.noteDescriptionField.sendKeys(noteDescription);
-        Thread.sleep(1000);
+        Thread.sleep(1500);
 
         this.noteModal.findElement(By.xpath("//button[contains(.,'Save changes')]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(1500);
 
         this.navNotesTabButton.click();
 
@@ -82,18 +82,18 @@ public class HomePageTest {
 
     public Note updateNote(String newTitle, String newDescription) throws InterruptedException {
         this.navNotesTabButton.click();
-        Thread.sleep(1000);
+        Thread.sleep(1500);
 
         this.notesTable.findElement(By.xpath("//button[contains(.,'Edit')]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(1500);
 
         this.noteTitleField.sendKeys(Keys.chord(Keys.COMMAND, "a"), newTitle);
         this.noteDescriptionField.sendKeys(Keys.chord(Keys.COMMAND, "a"), newDescription);
-        Thread.sleep(1000);
+        Thread.sleep(1500);
 
         this.noteModal.findElement(By.xpath("//button[contains(.,'Save changes')]")).click();
 
-        Thread.sleep(1000);
+        Thread.sleep(1500);
         this.navNotesTabButton.click();
 
         String title = this.notesTable.findElement(By.xpath("//tbody/tr[1]/th[1]")).getText();
@@ -103,12 +103,12 @@ public class HomePageTest {
 
     public void deleteNote() throws InterruptedException {
         this.navNotesTabButton.click();
-        Thread.sleep(1000);
+        Thread.sleep(1500);
         this.notesTable.findElement(By.xpath("//tbody/tr[1]/td[1]//a[contains(.,'Delete')]")).click();
     }
 
     public Boolean isNoteDeleted() throws InterruptedException {
-        Thread.sleep(1000);
+        Thread.sleep(1500);
         WebElement row = this.notesTable.findElement(By.tagName("tbody")).findElement(By.tagName("tr"));
         return row.findElements(By.tagName("td"))
                 .get(0)
@@ -118,20 +118,20 @@ public class HomePageTest {
 
     public void createCredential(String url, String username, String password) throws InterruptedException {
         this.navCredentialsTabButton.click();
-        Thread.sleep(1000);
+        Thread.sleep(1500);
 
         this.addNewCredentialButton.click();
-        Thread.sleep(1000);
+        Thread.sleep(1500);
 
         this.credentialUrlField.sendKeys(url);
         this.credentialUsernameField.sendKeys(username);
         this.credentialPasswordField.sendKeys(password+"\n");
-        Thread.sleep(1000);
+        Thread.sleep(1500);
     }
 
     public Boolean isCredentialCreated(String url, String username) throws InterruptedException {
         this.navCredentialsTabButton.click();
-        Thread.sleep(1000);
+        Thread.sleep(1500);
         String createdUrl = this.credentialsTable.findElement(By.xpath("//tbody/tr[1]/th[1]")).getText();
         String createdUsername = this.credentialsTable.findElement(By.xpath("//tbody/tr[1]/td[2]")).getText();
         return url.equals(createdUrl) && username.equals(createdUsername);
@@ -139,37 +139,37 @@ public class HomePageTest {
 
     public Boolean isPasswordEncrypted(String password) throws InterruptedException {
         this.navCredentialsTabButton.click();
-        Thread.sleep(1000);
+        Thread.sleep(1500);
         String createdPassword = this.credentialsTable.findElement(By.xpath("//tbody/tr[1]/td[3]")).getText();
         return !createdPassword.isBlank() && !createdPassword.equals(password);
     }
 
     public void updateCredential(String newUsernme, String newPassword) throws InterruptedException {
         this.navCredentialsTabButton.click();
-        Thread.sleep(1000);
+        Thread.sleep(1500);
         this.credentialsTable.findElement(By.xpath("//button[contains(.,'Edit')]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(1500);
 
         this.credentialUsernameField.sendKeys(Keys.chord(Keys.COMMAND, "a"), newUsernme);
         this.credentialPasswordField.sendKeys(Keys.chord(Keys.COMMAND, "a"), newPassword+"\n");
-        Thread.sleep(1000);
+        Thread.sleep(1500);
     }
 
     public Boolean isCredentialUpdated(String newUsername) throws InterruptedException {
         this.navCredentialsTabButton.click();
-        Thread.sleep(1000);
+        Thread.sleep(1500);
         return this.credentialsTable.findElement(By.xpath("//tbody/tr[1]/td[2]")).getText().equals(newUsername);
     }
 
     public void deleteCredential() throws InterruptedException {
         this.navCredentialsTabButton.click();
-        Thread.sleep(1000);
+        Thread.sleep(1500);
         this.credentialsTable.findElement(By.xpath("//tbody/tr[1]/td[1]//a[contains(.,'Delete')]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(1500);
     }
 
     public Boolean isCredentialDeleted() throws InterruptedException {
-        Thread.sleep(1000);
+        Thread.sleep(1500);
         return this.credentialsTable
                 .findElement(By.tagName("tbody"))
                 .findElement(By.tagName("tr"))
